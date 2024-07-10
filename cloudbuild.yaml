@@ -31,8 +31,6 @@ steps:
       - 'managed'
       - '--region'
       - 'us-west2'
-      - '--port'
-      - '8080'
       - '--allow-unauthenticated'  # Enable unauthenticated access
 
 images:
