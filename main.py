@@ -1,4 +1,5 @@
 import os
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 import io
@@ -16,7 +17,6 @@ def transform_image(pillow_image):
     data = np.asarray(pillow_image)
     data = data / 255.0
     data = data[np.newaxis, ..., np.newaxis]
-    # --> [1, x, y, 1]
     data = tf.image.resize(data, [28, 28])
     return data
 
@@ -28,7 +28,9 @@ def predict(x):
     label0 = np.argmax(pred0)
     return label0
 
+
 app = Flask(__name__)
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -51,6 +53,5 @@ def index():
 
 
 if __name__ == "__main__":
-    # port = int(os.environ.get('PORT', 8080))
-    # app.run(host='0.0.0.0', port=port)
-    app.run()
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
